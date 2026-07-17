@@ -1,0 +1,24 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv/
+
+# Environment variables and secrets
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Raw PDF documents
+data/raw/
+
+# macOS
+.DS_Store
+
+
