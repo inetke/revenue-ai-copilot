@@ -61,3 +61,166 @@ Prompt construction
 Groq LLM
           ↓
 Context-aware answer
+
+revenue-ai-copilot/
+│
+├── app/
+│   ├── data_loader.py
+│   ├── ingest.py
+│   ├── rag.py
+│   ├── rag_helper.py
+│   └── search.py
+│
+├── data/
+│   └── raw/
+│
+├── 01-rag-mvp.ipynb
+├── 02-load-pdfs.ipynb
+├── 03-rag-working.ipynb
+├── README.md
+├── pyproject.toml
+├── uv.lock
+└── .gitignore
+
+## Project Structure
+
+```text
+revenue-ai-copilot/
+│
+├── app/
+│   ├── data_loader.py
+│   ├── ingest.py
+│   ├── rag.py
+│   ├── rag_helper.py
+│   └── search.py
+│
+├── data/
+│   └── raw/
+│
+├── 01-rag-mvp.ipynb
+├── 02-load-pdfs.ipynb
+├── 03-rag-working.ipynb
+├── README.md
+├── pyproject.toml
+├── uv.lock
+└── .gitignore
+```
+
+The `data/raw/` directory is excluded from version control because the source PDF documents may have their own copyright and distribution restrictions.
+
+## Tech Stack
+
+- Python
+- uv
+- Jupyter Notebook
+- Groq
+- Large Language Models (LLMs)
+- Retrieval-Augmented Generation (RAG)
+- MinSearch
+- PDF document processing
+
+## Roadmap
+
+Revenue AI Copilot is being developed incrementally, with each version introducing new capabilities while keeping the architecture modular and extensible.
+
+### v0.1 — Foundation ✅
+
+The first milestone focuses on building a complete Retrieval-Augmented Generation (RAG) pipeline.
+
+**Completed**
+
+- PDF ingestion
+- Text extraction and cleaning
+- Document chunking
+- MinSearch retrieval
+- Prompt construction
+- Groq LLM integration
+- Functional RAG pipeline
+
+---
+
+### v0.2 — Semantic Retrieval
+
+The next step is improving information retrieval through semantic search.
+
+**Planned**
+
+- Generate document embeddings
+- Introduce vector search
+- Compare lexical and semantic retrieval
+- Improve retrieval relevance
+
+---
+
+### v0.3 — Answer Quality & Evaluation
+
+Focus on making answers more reliable and measurable.
+
+**Planned**
+
+- Add source citations
+- Improve prompt engineering
+- Create an evaluation dataset
+- Measure retrieval and answer quality
+- Reduce unsupported answers
+
+---
+
+### v0.4 — User Interface
+
+Transform the prototype into an interactive application.
+
+**Planned**
+
+- Build a Streamlit interface
+- Add a conversational chat experience
+- Support document uploads
+- Display retrieved sources
+- Add session history
+
+---
+
+### v0.5 — AI Copilot Capabilities
+
+Move beyond question answering towards an intelligent assistant.
+
+**Planned**
+
+- Summarize specialized documents
+- Compare information across documents
+- Identify relevant policies and strategies
+- Assist with domain-specific workflows
+- Introduce agent-based functionality
+
+---
+
+### v1.0 — Public MVP
+
+First production-ready release.
+
+**Goals**
+
+- Production-ready application
+- Persistent knowledge base
+- Reliable evaluation pipeline
+- Public deployment
+- Complete technical documentation
+
+---
+
+## Long-Term Vision
+
+Revenue AI Copilot is the first implementation of a broader AI architecture designed to work with specialized knowledge.
+
+Revenue Management was selected as the initial domain because it combines complex documentation, data-driven decision-making, and real business expertise. This makes it an ideal environment for validating Retrieval-Augmented Generation (RAG), semantic search, and AI-assisted decision support.
+
+The long-term vision is to build a reusable architecture that can be adapted to other knowledge-intensive domains such as Finance, Human Resources, Legal, Operations, or Customer Success, while maintaining reliable retrieval, transparent source attribution, and practical business value.
+
+---
+
+## Disclaimer
+
+Revenue AI Copilot is currently an educational and portfolio project under active development.
+
+Although the system generates answers based on the provided documentation, its responses should not replace professional judgment, internal company policies, or validated business data.
+
