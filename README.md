@@ -1,6 +1,11 @@
 # Revenue AI Copilot
 
-> **Turning specialized knowledge into faster, better-informed decisions.**
+> Turning specialized knowledge into faster, better-informed decisions.
+
+![Status](https://img.shields.io/badge/status-active-success)
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![RAG](https://img.shields.io/badge/RAG-LLM-orange)
 
 Revenue AI Copilot is an AI-powered assistant designed to help hotel Revenue Managers access specialized knowledge, understand available information, and make better-informed decisions.
 
@@ -18,12 +23,11 @@ Revenue AI Copilot transforms specialized documentation into a searchable knowle
 
 Users can ask questions in natural language, and the system retrieves relevant information from the available documents before generating a contextual answer with a Large Language Model.
 
-## Current Version
+## Project Status
 
-**Version:** `v0.1.0`  
-**Status:** Early functional prototype
+🟢 Current Version: **v0.1.0**
 
-The current version demonstrates a complete Retrieval-Augmented Generation pipeline using Revenue Management documentation.
+The project is under active development.
 
 ## Current Capabilities
 
@@ -123,7 +127,7 @@ The `data/raw/` directory is excluded from version control because the source PD
 
 Revenue AI Copilot is being developed incrementally, with each version introducing new capabilities while keeping the architecture modular and extensible.
 
-### v0.1 — Foundation ✅
+### Knowledge Base ✅
 
 The first milestone focuses on building a complete Retrieval-Augmented Generation (RAG) pipeline.
 
@@ -139,7 +143,7 @@ The first milestone focuses on building a complete Retrieval-Augmented Generatio
 
 ---
 
-### v0.2 — Semantic Retrieval
+### Semantic Search
 
 The next step is improving information retrieval through semantic search.
 
@@ -152,7 +156,7 @@ The next step is improving information retrieval through semantic search.
 
 ---
 
-### v0.3 — Answer Quality & Evaluation
+### Reliable Answers
 
 Focus on making answers more reliable and measurable.
 
@@ -166,7 +170,7 @@ Focus on making answers more reliable and measurable.
 
 ---
 
-### v0.4 — User Interface
+### User Experience
 
 Transform the prototype into an interactive application.
 
@@ -180,7 +184,7 @@ Transform the prototype into an interactive application.
 
 ---
 
-### v0.5 — AI Copilot Capabilities
+### AI Copilot
 
 Move beyond question answering towards an intelligent assistant.
 
@@ -194,7 +198,7 @@ Move beyond question answering towards an intelligent assistant.
 
 ---
 
-### v1.0 — Public MVP
+### Production
 
 First production-ready release.
 
