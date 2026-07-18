@@ -61,3 +61,25 @@ Prompt construction
 Groq LLM
           ↓
 Context-aware answer
+
+## Project Structure
+
+revenue-ai-copilot/
+│
+├── app/
+│   ├── data_loader.py
+│   ├── ingest.py
+│   ├── rag.py
+│   ├── rag_helper.py
+│   └── search.py
+│
+├── data/
+│   └── raw/
+│
+├── 01-rag-mvp.ipynb
+├── 02-load-pdfs.ipynb
+├── 03-rag-working.ipynb
+├── README.md
+├── pyproject.toml
+├── uv.lock
+└── .gitignore
