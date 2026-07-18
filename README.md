@@ -71,6 +71,7 @@ Prompt construction
 Groq LLM
           ↓
 Context-aware answer
+```
 
 ## Project Structure
 
