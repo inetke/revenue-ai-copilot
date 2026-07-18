@@ -11,6 +11,12 @@ Revenue AI Copilot is an AI-powered assistant designed to help hotel Revenue Man
 
 The project uses Revenue Management as its first real-world domain, while exploring a reusable AI architecture that could later be applied to other areas of specialized knowledge.
 
+## Why Revenue Management?
+
+Revenue Management was selected as the first domain because it combines complex documentation, analytical decision-making, and real operational challenges.
+
+Having professional experience in this field allowed the project to be developed around real workflows and realistic user needs instead of hypothetical examples.
+
 ## The Problem
 
 Revenue Managers often work with large amounts of information distributed across manuals, guides, reports, policies, and internal documentation.
@@ -66,26 +72,6 @@ Groq LLM
           ↓
 Context-aware answer
 
-revenue-ai-copilot/
-│
-├── app/
-│   ├── data_loader.py
-│   ├── ingest.py
-│   ├── rag.py
-│   ├── rag_helper.py
-│   └── search.py
-│
-├── data/
-│   └── raw/
-│
-├── 01-rag-mvp.ipynb
-├── 02-load-pdfs.ipynb
-├── 03-rag-working.ipynb
-├── README.md
-├── pyproject.toml
-├── uv.lock
-└── .gitignore
-
 ## Project Structure
 
 ```text
@@ -112,22 +98,44 @@ revenue-ai-copilot/
 
 The `data/raw/` directory is excluded from version control because the source PDF documents may have their own copyright and distribution restrictions.
 
+## Architecture
+
+Revenue AI Copilot follows a modular Retrieval-Augmented Generation (RAG) architecture.
+
+The project is organized into independent components responsible for:
+
+- Document ingestion
+- Text preprocessing
+- Chunk generation
+- Search and retrieval
+- Prompt construction
+- LLM interaction
+
+This modular design makes it easier to replace or improve individual components as the project evolves.
+
 ## Tech Stack
 
-- Python
-- uv
-- Jupyter Notebook
-- Groq
-- Large Language Models (LLMs)
-- Retrieval-Augmented Generation (RAG)
-- MinSearch
-- PDF document processing
+Python
+
+uv
+
+Jupyter Notebook
+
+Groq API
+
+Large Language Models
+
+Retrieval-Augmented Generation (RAG)
+
+MinSearch
+
+PDF Processing
 
 ## Roadmap
 
 Revenue AI Copilot is being developed incrementally, with each version introducing new capabilities while keeping the architecture modular and extensible.
 
-### Knowledge Base ✅
+### v0.1 — Knowledge Base ✅
 
 The first milestone focuses on building a complete Retrieval-Augmented Generation (RAG) pipeline.
 
@@ -143,7 +151,7 @@ The first milestone focuses on building a complete Retrieval-Augmented Generatio
 
 ---
 
-### Semantic Search
+### v0.2 — Semantic Search
 
 The next step is improving information retrieval through semantic search.
 
@@ -156,7 +164,7 @@ The next step is improving information retrieval through semantic search.
 
 ---
 
-### Reliable Answers
+### v0.3 — Reliable Answers
 
 Focus on making answers more reliable and measurable.
 
@@ -170,7 +178,7 @@ Focus on making answers more reliable and measurable.
 
 ---
 
-### User Experience
+### v0.4 — User Experience
 
 Transform the prototype into an interactive application.
 
@@ -184,7 +192,7 @@ Transform the prototype into an interactive application.
 
 ---
 
-### AI Copilot
+### v0.5 — AI Copilot
 
 Move beyond question answering towards an intelligent assistant.
 
@@ -198,7 +206,7 @@ Move beyond question answering towards an intelligent assistant.
 
 ---
 
-### Production
+### v1.0 — Production MVP
 
 First production-ready release.
 
@@ -219,6 +227,14 @@ Revenue AI Copilot is the first implementation of a broader AI architecture desi
 Revenue Management was selected as the initial domain because it combines complex documentation, data-driven decision-making, and real business expertise. This makes it an ideal environment for validating Retrieval-Augmented Generation (RAG), semantic search, and AI-assisted decision support.
 
 The long-term vision is to build a reusable architecture that can be adapted to other knowledge-intensive domains such as Finance, Human Resources, Legal, Operations, or Customer Success, while maintaining reliable retrieval, transparent source attribution, and practical business value.
+
+---
+
+## Future Development
+
+Revenue AI Copilot will continue evolving as new AI capabilities are incorporated throughout the project.
+
+Future versions will focus on semantic retrieval, evaluation, AI agents, and practical decision-support features for knowledge-intensive domains.
 
 ---
 
