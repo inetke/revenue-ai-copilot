@@ -1,0 +1,352 @@
+[
+  {
+    "question": "What sources of data should a revenue manager consider trustworthy for informing a profitable and adaptable revenue strategy?",
+    "document_id": 40,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 19,
+    "chunk_id": 0
+  },
+  {
+    "question": "What is the primary reason why revenue management is critical in the hotel industry?",
+    "document_id": 7,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 7,
+    "chunk_id": 0
+  },
+  {
+    "question": "What attributes make for high-quality hotel data?",
+    "document_id": 1,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 3,
+    "chunk_id": 0
+  },
+  {
+    "question": "What pricing strategy would you recommend for a hotel based on historical data and competitor pricing?",
+    "document_id": 47,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 22,
+    "chunk_id": 1
+  },
+  {
+    "question": "What factors influence the adjustment of room rates in real-time according to dynamic pricing?",
+    "document_id": 17,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 11,
+    "chunk_id": 1
+  },
+  {
+    "question": "How are you targeting new and emerging segments within business travel?",
+    "document_id": 15,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 10,
+    "chunk_id": 2
+  },
+  {
+    "question": "What types of leisure activities should be considered for inclusion in \"work, stay, play\" packages to appeal to working travelers?",
+    "document_id": 14,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 10,
+    "chunk_id": 1
+  },
+  {
+    "question": "What can effective revenue management help hotels achieve in terms of resource utilization?",
+    "document_id": 8,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 7,
+    "chunk_id": 1
+  },
+  {
+    "question": "What are some common Key Performance Indicators (KPIs) used to measure the success of hotel revenue management?",
+    "document_id": 57,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 26,
+    "chunk_id": 0
+  },
+  {
+    "question": "What pricing strategies can be implemented to optimize revenue from available inventory?",
+    "document_id": 6,
+    "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
+    "page": 6,
+    "chunk_id": 2
+  },
+  {
+    "question": "Can an RMS provide insights into a hotel's competitive set to guide pricing decisions?",
+    "document_id": 104,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 21,
+    "chunk_id": 0
+  },
+  {
+    "question": "What rate comparison functionality should the RMS have to view rates across different distribution channels?",
+    "document_id": 108,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 22,
+    "chunk_id": 1
+  },
+  {
+    "question": "What are the SEO benefits of adding original content, such as reviews, to a hotel's website?",
+    "document_id": 95,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 17,
+    "chunk_id": 2
+  },
+  {
+    "question": "What is the primary focus of yield management in the context of hotel revenue?",
+    "document_id": 66,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 5,
+    "chunk_id": 0
+  },
+  {
+    "question": "What is the recommended approach for presenting rate options to guests when attempting to upsell their accommodation?",
+    "document_id": 98,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 18,
+    "chunk_id": 2
+  },
+  {
+    "question": "What is the alternative revenue source being compared to the potential revenue from a group request or corporate contract in the displacement analysis exercise?",
+    "document_id": 88,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 14,
+    "chunk_id": 1
+  },
+  {
+    "question": "What is the potential annual revenue increase for a 50-room hotel property if a revenue management system is implemented correctly?",
+    "document_id": 63,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 3,
+    "chunk_id": 1
+  },
+  {
+    "question": "What percentage of hospitality operators use revenue management strategies?",
+    "document_id": 62,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 3,
+    "chunk_id": 0
+  },
+  {
+    "question": "What systems should the RMS software ideally integrate with to function effectively?",
+    "document_id": 110,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 23,
+    "chunk_id": 0
+  },
+  {
+    "question": "How often should a hotel revisit its pricing decisions and occupancy estimates to adapt to changing market conditions?",
+    "document_id": 74,
+    "source": "Beginners_Guide_to_Revenue_Management.pdf",
+    "page": 9,
+    "chunk_id": 1
+  },
+  {
+    "question": "Are negotiated accounts only staying on key peak-nights and displacing more valuable stays?",
+    "document_id": 128,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 10,
+    "chunk_id": 0
+  },
+  {
+    "question": "What impact will the introduction of Artificial Intelligence (AI) to the business intelligence solution have on the ability to spot and capitalize on new revenue opportunities at the property?",
+    "document_id": 146,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 19,
+    "chunk_id": 1
+  },
+  {
+    "question": "What is the current goal for maximizing Revenue Per Available Room (RevPAR) during this period of high demand?",
+    "document_id": 115,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 3,
+    "chunk_id": 0
+  },
+  {
+    "question": "What specific insights can a Revenue Manager gain from analyzing the day of week patterns of a particular account to develop a data-driven strategy for that account?",
+    "document_id": 126,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 9,
+    "chunk_id": 0
+  },
+  {
+    "question": "What reporting can Lighthouse Business Intelligence pull for pickup, and what are the key insights that can be taken from this to improve room revenue for specific future dates or periods?",
+    "document_id": 140,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 16,
+    "chunk_id": 1
+  },
+  {
+    "question": "What percentage of hotels globally does Lighthouse provide its platform to?",
+    "document_id": 150,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 22,
+    "chunk_id": 0
+  },
+  {
+    "question": "What percentage of time can a business intelligence solution reduce the time spent on common revenue management tasks?",
+    "document_id": 145,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 19,
+    "chunk_id": 0
+  },
+  {
+    "question": "What information can be easily distributed to other commercial departments and senior stakeholders for a clear and comprehensive picture of performance?",
+    "document_id": 132,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 11,
+    "chunk_id": 2
+  },
+  {
+    "question": "What is the typical rate premium that can be charged for a 2 queen bed room during a summer weekend compared to a Tuesday night in February?",
+    "document_id": 122,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 6,
+    "chunk_id": 1
+  },
+  {
+    "question": "What can a Revenue Manager determine by comparing the current pickup with a similar period in time?",
+    "document_id": 139,
+    "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
+    "page": 16,
+    "chunk_id": 0
+  },
+  {
+    "question": "What other revenue sources, aside from room revenue, should be considered when evaluating the potential impact of a group booking on the hotel's overall revenue and profit?",
+    "document_id": 262,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 63,
+    "chunk_id": 1
+  },
+  {
+    "question": "What are the key ingredients of effective hotel Revenue Management?",
+    "document_id": 151,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 2,
+    "chunk_id": 0
+  },
+  {
+    "question": "What is the potential revenue impact of moving the hotel's pricing strategy from BAR 6 to BAR 5, based on the historical room night production at each rate level?",
+    "document_id": 248,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 56,
+    "chunk_id": 1
+  },
+  {
+    "question": "What is the primary goal of implementing rate parity in a hotel?",
+    "document_id": 254,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 59,
+    "chunk_id": 0
+  },
+  {
+    "question": "What are the costs that should be taken into account when evaluating the effectiveness of overbooking, in order to balance extra rooms revenue sold against the potential costs of walking away or out-booking guests?",
+    "document_id": 171,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 7,
+    "chunk_id": 0
+  },
+  {
+    "question": "What are the names of the websites that offer \"Hotel Roulette\" as a booking option?",
+    "document_id": 240,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 53,
+    "chunk_id": 1
+  },
+  {
+    "question": "Will corporate account clients book on the same days of the week as they did in the past?",
+    "document_id": 205,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 26,
+    "chunk_id": 2
+  },
+  {
+    "question": "What is the recommended method for recording monthly occupancy percentages for future months in order to accurately compare pick-up trends?",
+    "document_id": 194,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 19,
+    "chunk_id": 0
+  },
+  {
+    "question": "Do school holidays from a particular country have a significant impact on the hotel's RevPAR?",
+    "document_id": 186,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 14,
+    "chunk_id": 0
+  },
+  {
+    "question": "What options and reports are available in the hotel's PMS and distribution software?",
+    "document_id": 170,
+    "source": "Revenue-Management-Manual-Xotels-2.pdf",
+    "page": 6,
+    "chunk_id": 1
+  },
+  {
+    "question": "What is the most common performance metric used in the hospitality industry to measure hotel revenue?",
+    "document_id": 292,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 14,
+    "chunk_id": 0
+  },
+  {
+    "question": "What is the percentage of respondents who cited organizational constraints as a factor deterring the adoption of new performance measures?",
+    "document_id": 308,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 21,
+    "chunk_id": 1
+  },
+  {
+    "question": "What are the actual Revenue Management metrics used by hospitality industry practitioners?",
+    "document_id": 278,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 7,
+    "chunk_id": 0
+  },
+  {
+    "question": "What are the two new metrics being discussed in the revenue management industry, and how do they differ from traditional revenue management metrics?",
+    "document_id": 276,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 6,
+    "chunk_id": 1
+  },
+  {
+    "question": "What are the top two challenges that hotel Revenue Managers perceive as obstacles to implementing new revenue management metrics?",
+    "document_id": 313,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 24,
+    "chunk_id": 0
+  },
+  {
+    "question": "What are the limitations of the existing Revenue Management metrics currently in use?",
+    "document_id": 277,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 6,
+    "chunk_id": 2
+  },
+  {
+    "question": "What is the adoption intention percentage for companies with a Total Revenue Management culture?",
+    "document_id": 310,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 22,
+    "chunk_id": 1
+  },
+  {
+    "question": "What percentage of respondents cited the effort required to implement various Revenue Management metrics as a negative factor?",
+    "document_id": 309,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 22,
+    "chunk_id": 0
+  },
+  {
+    "question": "What are the challenges in calculating and standardizing marketing costs for revenue management purposes?",
+    "document_id": 342,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 37,
+    "chunk_id": 2
+  },
+  {
+    "question": "What percentage of respondents felt that the existing Revenue Management measures are sufficient for their needs?",
+    "document_id": 298,
+    "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
+    "page": 16,
+    "chunk_id": 1
+  }
+]
