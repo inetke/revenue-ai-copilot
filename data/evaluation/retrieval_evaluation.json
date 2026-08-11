@@ -7,7 +7,7 @@
     "chunk_id": 0
   },
   {
-    "question": "What is the primary reason why revenue management is critical in the hotel industry?",
+    "question": "What is the primary reason why hotels need to effectively manage their revenue?",
     "document_id": 7,
     "source": "Hotel Revenue Guide eBook_18.07.2023.pdf",
     "page": 7,
@@ -126,7 +126,7 @@
     "chunk_id": 0
   },
   {
-    "question": "What systems should the RMS software ideally integrate with to function effectively?",
+    "question": "What key reports should an RMS software provide to offer an easily digestible snapshot of hotel performance?",
     "document_id": 110,
     "source": "Beginners_Guide_to_Revenue_Management.pdf",
     "page": 23,
@@ -182,7 +182,7 @@
     "chunk_id": 0
   },
   {
-    "question": "What percentage of time can a business intelligence solution reduce the time spent on common revenue management tasks?",
+    "question": "What percentage of time can integrating a business intelligence solution reduce the time spent on common revenue management tasks?",
     "document_id": 145,
     "source": "ebook-bi-time-saving-toolkit-for-revenue-managers-0424.pdf",
     "page": 19,
@@ -224,7 +224,7 @@
     "chunk_id": 0
   },
   {
-    "question": "What is the potential revenue impact of moving the hotel's pricing strategy from BAR 6 to BAR 5, based on the historical room night production at each rate level?",
+    "question": "What is the potential revenue impact of moving the hotel's pricing strategy from BAR 6 to BAR 5, based on the historical production of room nights at each rate level?",
     "document_id": 248,
     "source": "Revenue-Management-Manual-Xotels-2.pdf",
     "page": 56,
@@ -245,7 +245,7 @@
     "chunk_id": 0
   },
   {
-    "question": "What are the names of the websites that offer \"Hotel Roulette\" as a booking option?",
+    "question": "What percentage of our hotel's bookings come from unlisted or unpublished rate sources?",
     "document_id": 240,
     "source": "Revenue-Management-Manual-Xotels-2.pdf",
     "page": 53,
@@ -280,7 +280,7 @@
     "chunk_id": 1
   },
   {
-    "question": "What is the most common performance metric used in the hospitality industry to measure hotel revenue?",
+    "question": "What is the primary performance metric used in the hospitality industry to measure hotel revenue effectiveness?",
     "document_id": 292,
     "source": "2019-hsmai-and-sit-revenue-management-metrics-study-final.pdf",
     "page": 14,
