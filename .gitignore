@@ -18,7 +18,11 @@ wheels/
 # Raw PDF documents
 data/raw/
 
+# Monitoring database
+data/monitoring/*.db
+
 # macOS
 .DS_Store
 
-
+# Generated semantic index
+data/processed/semantic_index.json

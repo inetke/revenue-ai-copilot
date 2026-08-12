@@ -1,77 +1,272 @@
 # Revenue AI Copilot
 
-> Turning specialized knowledge into faster, better-informed decisions.
+> Turning specialized Revenue Management knowledge into fast, grounded, and traceable answers.
 
-![Status](https://img.shields.io/badge/status-active-success)
-![Python](https://img.shields.io/badge/Python-3.12-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![RAG](https://img.shields.io/badge/RAG-LLM-orange)
+Revenue AI Copilot is a Retrieval-Augmented Generation (RAG) application designed to help hotel Revenue Management professionals access specialized knowledge through natural-language questions.
 
-Revenue AI Copilot is an AI-powered assistant designed to help hotel Revenue Managers access specialized knowledge, understand available information, and make better-informed decisions.
+The system retrieves relevant information from a curated Revenue Management knowledge base and uses a Large Language Model to generate answers grounded in the retrieved documentation.
 
-The project uses Revenue Management as its first real-world domain, while exploring a reusable AI architecture that could later be applied to other areas of specialized knowledge.
+The project was developed as part of the **DataTalksClub LLM Zoomcamp** and demonstrates a complete RAG workflow including document ingestion, semantic retrieval, retrieval evaluation, LLM evaluation, a conversational interface, user feedback, and application monitoring.
+
+---
+
+## Problem Description
+
+Hotel Revenue Management involves working with large amounts of specialized information covering topics such as:
+
+- Pricing strategies
+- Demand forecasting
+- Market segmentation
+- Distribution channels
+- Revenue KPIs
+- Revenue optimization
+
+This information is often distributed across manuals, guides, reports, and other documentation.
+
+Finding the right information quickly can be difficult, particularly when Revenue Managers need to make decisions based on specific business situations.
+
+Revenue AI Copilot addresses this problem by transforming specialized Revenue Management documents into a searchable knowledge base.
+
+Users can ask questions in natural language and receive answers grounded in the retrieved documentation, including references to the original sources and pages.
+
+---
 
 ## Why Revenue Management?
 
-Revenue Management was selected as the first domain because it combines complex documentation, analytical decision-making, and real operational challenges.
+Revenue Management was selected because it combines complex documentation, analytical decision-making, pricing strategy, forecasting, distribution, and real operational challenges.
 
-Having professional experience in this field allowed the project to be developed around real workflows and realistic user needs instead of hypothetical examples.
+Professional experience in this domain also made it possible to develop the project around realistic Revenue Management questions and workflows rather than hypothetical examples.
 
-## The Problem
+The architecture itself is domain-independent and could later be adapted to other knowledge-intensive business areas.
 
-Revenue Managers often work with large amounts of information distributed across manuals, guides, reports, policies, and internal documentation.
+---
 
-Finding the right information at the right moment can be slow and inefficient, especially when decisions need to be made quickly.
+## Application
 
-## The Solution
+Revenue AI Copilot provides a conversational Streamlit interface where users can ask Revenue Management questions.
 
-Revenue AI Copilot transforms specialized documentation into a searchable knowledge base.
+The application includes:
 
-Users can ask questions in natural language, and the system retrieves relevant information from the available documents before generating a contextual answer with a Large Language Model.
+- Conversational chat interface
+- Semantic knowledge retrieval
+- Grounded LLM-generated answers
+- Source and page attribution
+- Retrieved-source similarity scores
+- Example questions
+- Conversation history
+- User feedback (`Helpful` / `Not helpful`)
+- Application monitoring dashboard
 
-## Project Status
-
-🟢 Current Version: **v0.1.0**
-
-The project is under active development.
-
-## Current Capabilities
-
-- Load PDF documents related to Revenue Management
-- Extract and clean document text
-- Divide documents into searchable chunks
-- Retrieve relevant information using MinSearch
-- Build contextual prompts
-- Generate answers using Groq-hosted Large Language Models
-- Answer domain-specific Revenue Management questions
-
-## Example Questions
+### Example Questions
 
 - What is RevPAR?
+- What is hotel Revenue Management?
+- How does dynamic pricing work?
 - Why is market segmentation important?
-- What are the benefits of dynamic pricing?
+- How can hotels improve revenue during periods of low demand?
 - What is channel management?
-- Which KPIs are commonly used in hotel Revenue Management?
 
-## How It Works
+---
+
+## RAG Architecture
+
+The current application follows this pipeline:
 
 ```text
 Revenue Management PDFs
           ↓
-Text extraction and cleaning
+PDF ingestion
+          ↓
+Text extraction & cleaning
           ↓
 Document chunking
           ↓
-MinSearch indexing
+Embedding generation
           ↓
-Relevant context retrieval
+Persistent semantic index
           ↓
-Prompt construction
+Semantic Search (Top-5)
           ↓
-Groq LLM
+Context construction
           ↓
-Context-aware answer
+Groq-hosted LLM
+          ↓
+Grounded answer
+          ↓
+Source attribution
+          ↓
+Streamlit interface
+          ↓
+Feedback & Monitoring
 ```
+
+The application separates ingestion, retrieval, generation, evaluation, and monitoring into independent components.
+
+---
+
+## Knowledge Base
+
+The current knowledge base consists of specialized Hotel Revenue Management PDF documents.
+
+During ingestion, the documents are:
+
+1. Loaded from the source directory.
+2. Extracted page by page.
+3. Cleaned and normalized.
+4. Split into smaller chunks.
+5. Assigned metadata including source document, page, and chunk ID.
+6. Converted into embeddings for semantic retrieval.
+
+The current knowledge base contains:
+
+**183 PDF pages → 358 searchable chunks**
+
+The original PDFs are not included in the public repository because source documents may have their own copyright and redistribution restrictions.
+
+Users wishing to reproduce the project should place their permitted source PDFs inside:
+
+```text
+data/raw/
+```
+
+and rebuild the semantic index.
+
+---
+
+## Semantic Search
+
+The production retrieval system uses semantic search.
+
+Document embeddings are generated once during index construction and stored in a persistent semantic index.
+
+At query time:
+
+1. The user question is converted into an embedding.
+2. Its similarity with the indexed document chunks is calculated.
+3. The most relevant chunks are retrieved.
+4. The Top-5 results are passed to the RAG pipeline.
+
+Persisting the document embeddings prevents the entire knowledge base from being embedded every time the application starts.
+
+---
+
+## Retrieval Evaluation
+
+A dedicated evaluation dataset containing **50 Revenue Management questions** was created from the knowledge base.
+
+Each evaluation question contains a known relevant document, allowing retrieval quality to be measured using:
+
+- **Hit Rate@5**
+- **MRR@5 (Mean Reciprocal Rank)**
+
+Multiple retrieval strategies were evaluated.
+
+| Retrieval Method | Hit Rate@5 | MRR@5 |
+|---|---:|---:|
+| Keyword Search | 0.7800 | 0.6907 |
+| Semantic Search | 0.8800 | 0.7657 |
+| Hybrid Search | 0.9000 | 0.7397 |
+
+Additional hybrid weighting experiments were performed:
+
+| Semantic / Keyword Weight | Hit Rate@5 | MRR@5 |
+|---|---:|---:|
+| 0.6 / 0.4 | 0.8800 | 0.7517 |
+| 0.7 / 0.3 | 0.8800 | 0.7417 |
+| 0.8 / 0.2 | 0.8800 | 0.7617 |
+
+Although Hybrid Search achieved the highest Hit Rate@5 in one experiment, Semantic Search produced the strongest overall MRR and provided a simpler production retrieval architecture.
+
+Semantic Search was therefore selected for the final application.
+
+---
+
+## End-to-End RAG Evaluation
+
+The complete RAG pipeline was evaluated using an **LLM-as-a-Judge** approach.
+
+A sample of 20 evaluation questions was used to assess four dimensions:
+
+- Relevance
+- Groundedness
+- Completeness
+- Hallucination safety
+
+### Results
+
+| Metric | Average Score |
+|---|---:|
+| Relevance | 4.65 / 5 |
+| Groundedness | 4.65 / 5 |
+| Completeness | 4.65 / 5 |
+| Hallucination Safety | 4.75 / 5 |
+
+Most evaluated answers received maximum scores.
+
+Two weaker cases were manually inspected. The analysis showed that some failures were caused not only by retrieval quality, but also by evaluation questions requesting information broader than what was explicitly supported by their assigned ground-truth chunks.
+
+Prompt constraints were subsequently strengthened to reduce unsupported extrapolation.
+
+Top-3 and Top-5 retrieval contexts were also compared. Top-3 reduced some unsupported information but slightly decreased relevance and completeness, so **Top-5 was retained** for the final pipeline.
+
+---
+
+## Grounded Generation
+
+Revenue AI Copilot is explicitly instructed to answer using only the retrieved context.
+
+The generation prompt requires the model to:
+
+- Focus on the user's specific question.
+- Use only claims supported by retrieved documentation.
+- Avoid external Revenue Management knowledge.
+- Avoid unsupported recommendations or consequences.
+- Respect conditions such as low demand, high demand, or peak periods.
+- Prefer concise answers over unnecessary extrapolation.
+- Cite the relevant source and page.
+- State when the retrieved context is insufficient.
+
+This helps reduce hallucinations and keeps answers traceable to the underlying knowledge base.
+
+---
+
+## User Feedback
+
+Users can evaluate individual answers directly from the chat interface using:
+
+- 👍 Helpful
+- 👎 Not helpful
+
+Feedback is associated with the corresponding interaction and persisted in a local SQLite database.
+
+This provides a foundation for identifying weak answers and improving the RAG system over time.
+
+---
+
+## Monitoring
+
+The application records operational information for each interaction, including:
+
+- Timestamp
+- User question
+- Generated answer
+- Response latency
+- Number of retrieved sources
+- User feedback
+
+Monitoring data is stored in SQLite.
+
+A dedicated Streamlit monitoring page provides summary metrics and visualizations covering:
+
+1. Questions over time
+2. Response latency over time
+3. User feedback distribution
+4. Retrieved sources per question
+5. Latency distribution
+
+The dashboard also displays overall metrics such as total questions, average latency, feedback responses, and positive feedback.
+
+---
 
 ## Project Structure
 
@@ -79,169 +274,225 @@ Context-aware answer
 revenue-ai-copilot/
 │
 ├── app/
+│   ├── build_index.py
 │   ├── data_loader.py
 │   ├── ingest.py
+│   ├── monitoring.py
 │   ├── rag.py
 │   ├── rag_helper.py
-│   └── search.py
+│   ├── search.py
+│   └── semantic_search.py
+│
+├── pages/
+│   └── 01-monitoring.py
 │
 ├── data/
-│   └── raw/
+│   ├── raw/
+│   ├── processed/
+│   │   └── semantic_index.json
+│   └── monitoring/
+│       └── revenue_ai_copilot.db
 │
 ├── 01-rag-mvp.ipynb
 ├── 02-load-pdfs.ipynb
 ├── 03-rag-working.ipynb
+├── 04-semantic-search.ipynb
+├── 05-evaluation.ipynb
+│
+├── streamlit_app.py
 ├── README.md
 ├── pyproject.toml
 ├── uv.lock
+├── .python-version
 └── .gitignore
 ```
 
-The `data/raw/` directory is excluded from version control because the source PDF documents may have their own copyright and distribution restrictions.
+---
 
-## Architecture
+## Notebooks
 
-Revenue AI Copilot follows a modular Retrieval-Augmented Generation (RAG) architecture.
+The notebooks document the development and experimentation process.
 
-The project is organized into independent components responsible for:
+### `01-rag-mvp.ipynb`
 
-- Document ingestion
-- Text preprocessing
-- Chunk generation
-- Search and retrieval
-- Prompt construction
-- LLM interaction
+Initial Retrieval-Augmented Generation prototype.
 
-This modular design makes it easier to replace or improve individual components as the project evolves.
+### `02-load-pdfs.ipynb`
+
+PDF loading and document ingestion experiments.
+
+### `03-rag-working.ipynb`
+
+Working RAG pipeline and retrieval experiments.
+
+### `04-semantic-search.ipynb`
+
+Semantic retrieval and embedding experiments.
+
+### `05-evaluation.ipynb`
+
+Evaluation pipeline including:
+
+- Evaluation dataset generation
+- Keyword retrieval evaluation
+- Semantic retrieval evaluation
+- Hybrid retrieval experiments
+- Hit Rate and MRR
+- End-to-end RAG evaluation
+- LLM-as-a-Judge
+- Error analysis
+
+---
 
 ## Tech Stack
 
-Python
-
-uv
-
-Jupyter Notebook
-
-Groq API
-
-Large Language Models
-
-Retrieval-Augmented Generation (RAG)
-
-MinSearch
-
-PDF Processing
-
-## Roadmap
-
-Revenue AI Copilot is being developed incrementally, with each version introducing new capabilities while keeping the architecture modular and extensible.
-
-### v0.1 — Knowledge Base ✅
-
-The first milestone focuses on building a complete Retrieval-Augmented Generation (RAG) pipeline.
-
-**Completed**
-
-- PDF ingestion
-- Text extraction and cleaning
-- Document chunking
-- MinSearch retrieval
-- Prompt construction
-- Groq LLM integration
-- Functional RAG pipeline
+- **Python**
+- **Streamlit** — application interface and monitoring dashboard
+- **OpenAI API** — embedding generation
+- **Groq API** — LLM inference
+- **SQLite** — interaction and feedback monitoring
+- **Pandas** — monitoring data processing
+- **PyPDF** — PDF ingestion
+- **NumPy** — semantic similarity calculations
+- **MinSearch / lexical retrieval** — retrieval experiments
+- **Jupyter Notebook** — experimentation and evaluation
+- **uv** — dependency and environment management
 
 ---
 
-### v0.2 — Semantic Search
+## Installation
 
-The next step is improving information retrieval through semantic search.
+Clone the repository:
 
-**Planned**
+```bash
+git clone <https://github.com/inetke/revenue-ai-copilot>
+cd revenue-ai-copilot
+```
 
-- Generate document embeddings
-- Introduce vector search
-- Compare lexical and semantic retrieval
-- Improve retrieval relevance
+Install the project dependencies:
 
----
+```bash
+uv sync
+```
 
-### v0.3 — Reliable Answers
+Create a `.env` file in the project root:
 
-Focus on making answers more reliable and measurable.
+```text
+OPENAI_API_KEY=your_openai_api_key
+GROQ_API_KEY=your_groq_api_key
+```
 
-**Planned**
-
-- Add source citations
-- Improve prompt engineering
-- Create an evaluation dataset
-- Measure retrieval and answer quality
-- Reduce unsupported answers
-
----
-
-### v0.4 — User Experience
-
-Transform the prototype into an interactive application.
-
-**Planned**
-
-- Build a Streamlit interface
-- Add a conversational chat experience
-- Support document uploads
-- Display retrieved sources
-- Add session history
+Do not commit this file to version control.
 
 ---
 
-### v0.5 — AI Copilot
+## Adding the Knowledge Base
 
-Move beyond question answering towards an intelligent assistant.
+Place the Revenue Management PDF documents inside:
 
-**Planned**
+```text
+data/raw/
+```
 
-- Summarize specialized documents
-- Compare information across documents
-- Identify relevant policies and strategies
-- Assist with domain-specific workflows
-- Introduce agent-based functionality
+Then build the semantic index:
 
----
+```bash
+uv run python -m app.build_index
+```
 
-### v1.0 — Production MVP
+A persistent semantic index will be created under:
 
-First production-ready release.
-
-**Goals**
-
-- Production-ready application
-- Persistent knowledge base
-- Reliable evaluation pipeline
-- Public deployment
-- Complete technical documentation
+```text
+data/processed/semantic_index.json
+```
 
 ---
 
-## Long-Term Vision
+## Running the Application
 
-Revenue AI Copilot is the first implementation of a broader AI architecture designed to work with specialized knowledge.
+Start the Streamlit application:
 
-Revenue Management was selected as the initial domain because it combines complex documentation, data-driven decision-making, and real business expertise. This makes it an ideal environment for validating Retrieval-Augmented Generation (RAG), semantic search, and AI-assisted decision support.
+```bash
+uv run streamlit run streamlit_app.py
+```
 
-The long-term vision is to build a reusable architecture that can be adapted to other knowledge-intensive domains such as Finance, Human Resources, Legal, Operations, or Customer Success, while maintaining reliable retrieval, transparent source attribution, and practical business value.
+Open the URL displayed by Streamlit.
+
+The main page provides the Revenue AI Copilot chat interface.
+
+The **Monitoring** page is available from the Streamlit navigation menu.
+
+---
+
+## Environment Variables
+
+The application requires:
+
+```text
+OPENAI_API_KEY
+GROQ_API_KEY
+```
+
+`OPENAI_API_KEY` is used for semantic embeddings.
+
+`GROQ_API_KEY` is used for LLM answer generation.
+
+Secrets must not be committed to Git.
+
+---
+
+## Current Status
+
+- [x] PDF ingestion
+- [x] Text preprocessing
+- [x] Document chunking
+- [x] Keyword retrieval
+- [x] Semantic retrieval
+- [x] Persistent semantic index
+- [x] Retrieval evaluation
+- [x] Hybrid retrieval experiments
+- [x] End-to-end RAG evaluation
+- [x] LLM-as-a-Judge evaluation
+- [x] Source attribution
+- [x] Streamlit chat interface
+- [x] Conversation history
+- [x] Example questions
+- [x] User feedback
+- [x] SQLite interaction logging
+- [x] Monitoring dashboard
+- [ ] Containerization
+- [ ] Public deployment
 
 ---
 
 ## Future Development
 
-Revenue AI Copilot will continue evolving as new AI capabilities are incorporated throughout the project.
+Potential future improvements include:
 
-Future versions will focus on semantic retrieval, evaluation, AI agents, and practical decision-support features for knowledge-intensive domains.
+- Query rewriting
+- More advanced re-ranking
+- Larger domain-specific knowledge bases
+- Automated evaluation pipelines
+- Improved monitoring and analytics
+- Document upload and ingestion from the interface
+- Conversation-aware retrieval
+- Agent-based Revenue Management workflows
+- Integration with live hotel operational data
+
+---
+
+## Long-Term Vision
+
+Revenue AI Copilot is the first implementation of a broader architecture for AI-assisted access to specialized business knowledge.
+
+Revenue Management provides a useful environment for validating RAG, semantic retrieval, grounded generation, evaluation, and monitoring because it combines complex documentation with real business decision-making.
+
+The same architecture could eventually be adapted to other knowledge-intensive domains while maintaining reliable retrieval, transparent source attribution, and measurable answer quality.
 
 ---
 
 ## Disclaimer
 
-Revenue AI Copilot is currently an educational and portfolio project under active development.
+Revenue AI Copilot is an educational and portfolio project.
 
-Although the system generates answers based on the provided documentation, its responses should not replace professional judgment, internal company policies, or validated business data.
-
+The application generates answers based on the documents available in its knowledge base. Its responses should not replace professional judgment, internal company policies, validated operational data, or commercial decision-making.
