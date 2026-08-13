@@ -26,6 +26,13 @@ st.set_page_config(
 def load_index():
     return load_semantic_index()
 
+from pathlib import Path
+from app.build_index import build_index
+
+INDEX_PATH = Path("data/processed/semantic_index.json")
+
+if not INDEX_PATH.exists():
+    build_index()
 
 semantic_documents = load_index()
 

@@ -424,6 +424,34 @@ The **Monitoring** page is available from the Streamlit navigation menu.
 
 ---
 
+## Running with Docker
+
+The application can also be executed inside a Docker container for a reproducible environment.
+
+Build the Docker image:
+
+```bash
+docker build -t revenue-ai-copilot .
+```
+
+Run the container using the required API keys and mounting the local knowledge base:
+
+```bash
+docker run --rm \
+  -p 8501:8501 \
+  --env-file .env \
+  -v "$(pwd)/data/raw:/app/data/raw:ro" \
+  revenue-ai-copilot
+```
+
+The application will be available on port `8501`.
+
+If the semantic index does not exist, the application automatically builds it from the PDF documents available in `data/raw/`.
+
+The source documents are mounted as a read-only Docker volume and are not included in the Docker image.
+
+---
+
 ## Environment Variables
 
 The application requires:
@@ -460,7 +488,7 @@ Secrets must not be committed to Git.
 - [x] User feedback
 - [x] SQLite interaction logging
 - [x] Monitoring dashboard
-- [ ] Containerization
+- [x] Docker containerization
 - [ ] Public deployment
 
 ---
