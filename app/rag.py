@@ -50,7 +50,7 @@ def rag_answer(
     question,
     semantic_documents,
     top_k=5,
-    model="llama-3.1-8b-instant"
+    model="openai/gpt-oss-20b"
 ):
     results = semantic_search(
         question,
