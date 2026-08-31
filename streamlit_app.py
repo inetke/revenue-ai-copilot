@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import os
 
 from dotenv import load_dotenv
 
@@ -28,11 +29,24 @@ def load_index():
 
 from pathlib import Path
 from app.build_index import build_index
+from app.index_download import download_semantic_index
 
 INDEX_PATH = Path("data/processed/semantic_index.json")
+RAW_DATA_PATH = Path("data/raw")
+
 
 if not INDEX_PATH.exists():
-    build_index()
+    token = os.getenv("GITHUB_ASSETS_TOKEN")
+
+    if token:
+        download_semantic_index()
+    elif RAW_DATA_PATH.exists() and any(RAW_DATA_PATH.glob("*.pdf")):
+        build_index()
+    else:
+        raise RuntimeError(
+            "Semantic index is missing. "
+            "Configure GITHUB_ASSETS_TOKEN or provide PDFs in data/raw."
+        )
 
 semantic_documents = load_index()
 
