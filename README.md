@@ -582,6 +582,39 @@ Secrets must never be committed to version control.
 
 ---
 
+## Project Evaluation Criteria
+
+This project was developed as the final project for the DataTalksClub LLM Zoomcamp and covers the main evaluation criteria:
+
+| Evaluation Criterion | Implementation |
+|---|---|
+| Problem Description | Hotel Revenue Management use case and business problem clearly defined |
+| Retrieval Flow | Semantic retrieval over a five-document Revenue Management knowledge base |
+| Retrieval Evaluation | 50-question evaluation comparing keyword, semantic, Hybrid RRF, and weighted hybrid retrieval |
+| LLM Evaluation | 20-question end-to-end RAG evaluation using LLM-as-a-Judge across relevance, groundedness, completeness, and hallucination safety |
+| Interface | Interactive Streamlit chat application |
+| Ingestion Pipeline | Python pipeline for PDF ingestion, chunking, embedding generation, and semantic index creation |
+| Monitoring | SQLite-based monitoring with usage, latency, source retrieval, and user-feedback metrics |
+| Containerization | Dockerfile provided for reproducible application execution |
+| Reproducibility | Installation, environment configuration, knowledge-base setup, and execution instructions documented in this README |
+| Hybrid Search | Multiple hybrid retrieval strategies evaluated against pure semantic retrieval |
+| Cloud Deployment | Application deployed publicly on Streamlit Community Cloud |
+
+### Additional Engineering Features
+
+Beyond the core project requirements, the project includes:
+
+- Source and page attribution for grounded answers
+- Multilingual responses based on the user's query language
+- Explicit handling of insufficient context
+- Manual analysis of RAG failure cases
+- User feedback collection
+- Operational monitoring dashboard
+- Private semantic-index distribution for cloud deployment
+- Separation between public application code and copyrighted source documents
+
+---
+
 ## Future Development
 
 Potential future improvements include:
