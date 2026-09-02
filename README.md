@@ -1,12 +1,25 @@
-# Revenue AI Copilot
+## Revenue AI Copilot
 
 > Turning specialized Revenue Management knowledge into fast, grounded, and traceable answers.
+
+🚀 **[Live Demo](https://revenue-ai-copilot-2pgrnlgyantu75qnaet59x.streamlit.app)**
 
 Revenue AI Copilot is a Retrieval-Augmented Generation (RAG) application designed to help hotel Revenue Management professionals access specialized knowledge through natural-language questions.
 
 The system retrieves relevant information from a curated Revenue Management knowledge base and uses a Large Language Model to generate answers grounded in the retrieved documentation.
 
-The project was developed as part of the **DataTalksClub LLM Zoomcamp** and demonstrates a complete RAG workflow including document ingestion, semantic retrieval, retrieval evaluation, LLM evaluation, a conversational interface, user feedback, and application monitoring.
+The project was developed as part of the **DataTalksClub LLM Zoomcamp** and demonstrates a complete production-oriented RAG workflow including document ingestion, semantic retrieval, retrieval evaluation, LLM evaluation, a conversational interface, user feedback, application monitoring, containerization, and cloud deployment.
+
+### Key Features
+
+- 🔎 Semantic retrieval over a specialized Revenue Management knowledge base
+- 🤖 Grounded RAG answers with source and page attribution
+- 🌍 Multilingual questions and answers
+- 📊 Retrieval and end-to-end RAG evaluation
+- 👍 User feedback collection
+- 📈 Application monitoring dashboard
+- 🐳 Dockerized application
+- ☁️ Public deployment on Streamlit Community Cloud
 
 ---
 
@@ -57,6 +70,26 @@ The application includes:
 - User feedback (`Helpful` / `Not helpful`)
 - Application monitoring dashboard
 
+---
+
+### Application Preview
+
+![Revenue AI Copilot answering a Revenue Management forecasting question](docs/images/rag-forecasting.png)
+
+The application retrieves relevant knowledge-base content and generates grounded answers with source and page attribution.
+
+### Live Demo
+
+The application is publicly deployed on Streamlit Community Cloud:
+
+👉 **[Open Revenue AI Copilot](https://revenue-ai-copilot-2pgrnlgyantu75qnaet59x.streamlit.app)**
+
+The deployed application uses the same semantic retrieval and RAG pipeline evaluated in this repository.
+
+The semantic index is stored separately from the public repository and is securely downloaded at application startup. This keeps the source documents and extracted knowledge-base content out of the public code repository while allowing the deployed application to use the pre-built index.
+
+---
+
 ### Example Questions
 
 - What is RevPAR?
@@ -101,6 +134,32 @@ Feedback & Monitoring
 ```
 
 The application separates ingestion, retrieval, generation, evaluation, and monitoring into independent components.
+
+### Production Deployment Architecture
+
+The public application is deployed on **Streamlit Community Cloud**.
+
+Because the original PDF documents and the extracted semantic index are not distributed through the public repository, the production deployment uses a separate private asset repository.
+
+```text
+Public GitHub Repository
+        ↓
+Streamlit Community Cloud
+        ↓
+Check for semantic index
+        ↓
+Private GitHub Release Asset
+        ↓
+Download semantic_index.json
+        ↓
+Load 358 indexed document chunks
+        ↓
+Revenue AI Copilot
+```
+
+At application startup, the system checks whether the semantic index is available locally. If it is missing in the cloud environment, the application securely downloads the pre-built index from a private GitHub release using a read-only access token stored in Streamlit Secrets.
+
+This architecture allows the application code to remain fully public while keeping the source PDFs and extracted knowledge-base content outside the public repository.
 
 ---
 
@@ -164,26 +223,28 @@ Multiple retrieval strategies were evaluated.
 | Retrieval Method | Hit Rate@5 | MRR@5 |
 |---|---:|---:|
 | Keyword Search | 0.7800 | 0.6907 |
-| Semantic Search | 0.8800 | 0.7657 |
-| Hybrid Search | 0.9000 | 0.7397 |
+| Semantic Search | 0.8400 | 0.7357 |
+| Hybrid RRF (50/50) | 0.8600 | 0.7257 |
 
-Additional hybrid weighting experiments were performed:
+Additional weighted hybrid experiments were performed:
 
 | Semantic / Keyword Weight | Hit Rate@5 | MRR@5 |
 |---|---:|---:|
-| 0.6 / 0.4 | 0.8800 | 0.7517 |
-| 0.7 / 0.3 | 0.8800 | 0.7417 |
-| 0.8 / 0.2 | 0.8800 | 0.7617 |
+| 0.6 / 0.4 | 0.8400 | 0.7367 |
+| 0.7 / 0.3 | 0.8400 | 0.7267 |
+| 0.8 / 0.2 | 0.8400 | 0.7467 |
 
-Although Hybrid Search achieved the highest Hit Rate@5 in one experiment, Semantic Search produced the strongest overall MRR and provided a simpler production retrieval architecture.
+Hybrid RRF achieved the highest Hit Rate@5, while the 80/20 weighted hybrid configuration achieved the highest MRR@5.
 
-Semantic Search was therefore selected for the final application.
+Despite these improvements, **Semantic Search (Top-5)** was selected for the production application. It provided strong retrieval performance while keeping the retrieval pipeline simpler and easier to maintain.
+
+The hybrid experiments were retained as part of the evaluation process rather than adding additional production complexity for a relatively small improvement in retrieval metrics.
 
 ---
 
 ## End-to-End RAG Evaluation
 
-The complete RAG pipeline was evaluated using an **LLM-as-a-Judge** approach.
+The complete production RAG pipeline was evaluated using an **LLM-as-a-Judge** approach.
 
 A sample of 20 evaluation questions was used to assess four dimensions:
 
@@ -196,18 +257,20 @@ A sample of 20 evaluation questions was used to assess four dimensions:
 
 | Metric | Average Score |
 |---|---:|
-| Relevance | 4.65 / 5 |
-| Groundedness | 4.65 / 5 |
-| Completeness | 4.65 / 5 |
-| Hallucination Safety | 4.75 / 5 |
+| Relevance | 4.50 / 5 |
+| Groundedness | 4.60 / 5 |
+| Completeness | 4.40 / 5 |
+| Hallucination Safety | 4.60 / 5 |
 
-Most evaluated answers received maximum scores.
+Most evaluated answers achieved high scores, while manual inspection of the main outliers revealed several distinct failure modes.
 
-Two weaker cases were manually inspected. The analysis showed that some failures were caused not only by retrieval quality, but also by evaluation questions requesting information broader than what was explicitly supported by their assigned ground-truth chunks.
+In one case, the requested information was not available in the retrieved context. The system correctly acknowledged that limitation rather than fabricating an answer, preserving maximum groundedness and hallucination safety despite lower relevance and completeness scores.
 
-Prompt constraints were subsequently strengthened to reduce unsupported extrapolation.
+Other inspected cases revealed occasional over-interpretation of partially relevant context and retrieval limitations for highly specific questions.
 
-Top-3 and Top-5 retrieval contexts were also compared. Top-3 reduced some unsupported information but slightly decreased relevance and completeness, so **Top-5 was retained** for the final pipeline.
+These results show that end-to-end RAG quality depends on both retrieving sufficiently specific evidence and ensuring that the generation model does not extrapolate beyond the retrieved documentation.
+
+The final production configuration retains **Semantic Search with Top-5 retrieval** and a strict context-grounded generation prompt. Query rewriting and re-ranking are identified as potential future improvements.
 
 ---
 
@@ -215,18 +278,23 @@ Top-3 and Top-5 retrieval contexts were also compared. Top-3 reduced some unsupp
 
 Revenue AI Copilot is explicitly instructed to answer using only the retrieved context.
 
-The generation prompt requires the model to:
+The production prompt requires the model to:
 
-- Focus on the user's specific question.
-- Use only claims supported by retrieved documentation.
-- Avoid external Revenue Management knowledge.
-- Avoid unsupported recommendations or consequences.
-- Respect conditions such as low demand, high demand, or peak periods.
-- Prefer concise answers over unnecessary extrapolation.
-- Cite the relevant source and page.
-- State when the retrieved context is insufficient.
+- Focus specifically on the user's question.
+- Prioritize the most directly relevant retrieved context.
+- Avoid combining unrelated information from retrieved chunks.
+- Avoid external knowledge.
+- Avoid unsupported benefits, consequences, or recommendations.
+- Prefer short and precise answers over unsupported expansion.
+- Answer in the same language as the user's question.
+- Cite the relevant source and page for important claims.
+- Clearly state when the available context does not fully answer the question.
 
-This helps reduce hallucinations and keeps answers traceable to the underlying knowledge base.
+The generation model is `openai/gpt-oss-20b`, accessed through the Groq API.
+
+The model was evaluated as part of the complete RAG pipeline rather than assuming that model quality alone guarantees grounded answers. Prompt experiments were also evaluated to balance answer usefulness with groundedness and hallucination safety.
+
+The final prompt prioritizes traceability and factual support over generating longer answers when the retrieved documentation does not provide sufficient evidence.
 
 ---
 
@@ -266,6 +334,14 @@ A dedicated Streamlit monitoring page provides summary metrics and visualization
 
 The dashboard also displays overall metrics such as total questions, average latency, feedback responses, and positive feedback.
 
+### Monitoring Preview
+
+![Revenue AI Copilot monitoring overview](docs/images/monitoring-overview.png)
+
+The monitoring dashboard tracks application usage, response latency, and user feedback.
+
+![Revenue AI Copilot monitoring dashboard](docs/images/monitoring-dashboard.png)
+
 ---
 
 ## Project Structure
@@ -277,6 +353,7 @@ revenue-ai-copilot/
 │   ├── build_index.py
 │   ├── data_loader.py
 │   ├── ingest.py
+│   ├── index_download.py
 │   ├── monitoring.py
 │   ├── rag.py
 │   ├── rag_helper.py
@@ -348,8 +425,8 @@ Evaluation pipeline including:
 
 - **Python**
 - **Streamlit** — application interface and monitoring dashboard
-- **OpenAI API** — embedding generation
-- **Groq API** — LLM inference
+- **OpenAI API** — embedding generation with `text-embedding-3-small`
+- **Groq API** — LLM inference using `openai/gpt-oss-20b`
 - **SQLite** — interaction and feedback monitoring
 - **Pandas** — monitoring data processing
 - **PyPDF** — PDF ingestion
@@ -446,26 +523,38 @@ docker run --rm \
 
 The application will be available on port `8501`.
 
-If the semantic index does not exist, the application automatically builds it from the PDF documents available in `data/raw/`.
+If the semantic index does not exist, the application can obtain it in two ways:
 
-The source documents are mounted as a read-only Docker volume and are not included in the Docker image.
+- If `GITHUB_ASSETS_TOKEN` is configured, the pre-built semantic index is downloaded from the private release asset.
+- Otherwise, if permitted PDF documents are available in `data/raw/`, the semantic index is built locally from those documents.
+
+The source documents are not included in the public repository or Docker image.
 
 ---
 
 ## Environment Variables
 
-The application requires:
+For local development, the application requires:
 
 ```text
 OPENAI_API_KEY
 GROQ_API_KEY
 ```
 
-`OPENAI_API_KEY` is used for semantic embeddings.
+- `OPENAI_API_KEY` is used to generate semantic embeddings.
+- `GROQ_API_KEY` is used for LLM answer generation.
 
-`GROQ_API_KEY` is used for LLM answer generation.
+The cloud deployment additionally uses:
 
-Secrets must not be committed to Git.
+```text
+GITHUB_ASSETS_TOKEN
+```
+
+- `GITHUB_ASSETS_TOKEN` provides read-only access to the private release asset containing the pre-built semantic index.
+
+In production, secrets are stored securely in **Streamlit Secrets** and are not exposed in the public repository.
+
+Secrets must never be committed to version control.
 
 ---
 
@@ -489,7 +578,7 @@ Secrets must not be committed to Git.
 - [x] SQLite interaction logging
 - [x] Monitoring dashboard
 - [x] Docker containerization
-- [ ] Public deployment
+- [x] Public deployment
 
 ---
 

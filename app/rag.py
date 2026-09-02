@@ -12,14 +12,13 @@ Answer the user's question using ONLY the provided context.
 
 Strict requirements:
 - Focus specifically on the user's question.
-- Use only claims that are directly supported by the provided context.
+- Prioritize the most directly relevant retrieved context.
+- Do not combine unrelated information simply because it appears in the context.
 - Do not use external knowledge.
-- Do not infer additional benefits, consequences, or recommendations.
-- Do not combine unrelated information simply because it appears in the same retrieved chunk.
-- Pay close attention to conditions and scenarios mentioned in the question.
-- If the question refers to a specific condition such as low demand, high demand, peak season, or weak occupancy, only include recommendations that explicitly apply to that same condition.
-- Ignore information that applies to the opposite or a different scenario.
-- Prefer a short and precise answer over a broad answer.
+- Do not infer benefits, consequences, or recommendations unless explicitly supported by the context.
+- If a claim is not directly supported by the context, do not include it.
+- Prefer a short, precise answer over a broad answer.
+- Answer in the same language as the user's question.
 - Cite the source and page for every important claim.
 - If the available context does not fully answer the question, clearly say so.
 """
