@@ -1,8 +1,14 @@
 import streamlit as st
 import time
 import os
+import re
 
 from dotenv import load_dotenv
+
+def clean_answer_citations(text):
+    text = re.sub(r"【[^】]*】", "", text)
+    text = re.sub(r"\s+([.,;:!?])", r"\1", text)
+    return text.strip()
 
 # Load environment variables before importing app modules
 load_dotenv(".env", override=True)
@@ -205,11 +211,13 @@ if question:
                 top_k=5
             )
 
+            clean_answer = clean_answer_citations(result["answer"])
+
             latency_seconds = (
                 time.perf_counter() - start_time
             )
 
-        st.markdown(result["answer"])
+        st.markdown(clean_answer)
 
         sources = [
             {
@@ -262,7 +270,7 @@ if question:
     # Save assistant message
     st.session_state.messages.append({
         "role": "assistant",
-        "content": result["answer"],
+        "content": clean_answer,
         "sources": sources,
         "interaction_id": interaction_id
     })
