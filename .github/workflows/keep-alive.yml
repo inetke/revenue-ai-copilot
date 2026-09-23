@@ -1,15 +1,101 @@
-name: Keep Streamlit App Awake
+name: Keep Revenue AI Copilot Awake - Browser
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "23 */6 * * *"
+
   workflow_dispatch:
 
 jobs:
-  ping:
+  visit-app:
     runs-on: ubuntu-latest
+    timeout-minutes: 7
 
     steps:
-      - name: Ping Revenue AI Copilot
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install Playwright
         run: |
-          curl -L --fail --retry 3 "https://revenue-ai-copilot-2pgrnlgyantu75qnaet59x.streamlit.app"
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Visit and wake Revenue AI Copilot
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+
+            const page = await browser.newPage({
+              viewport: { width: 1280, height: 900 }
+            });
+
+            console.log('Opening Revenue AI Copilot...');
+
+            await page.goto(
+              'https://revenue-ai-copilot-2pgrnlgyantu75qnaet59x.streamlit.app',
+              {
+                waitUntil: 'domcontentloaded',
+                timeout: 120000
+              }
+            );
+
+            await page.waitForTimeout(5000);
+
+            console.log('Initial title:', await page.title());
+
+            const wakeButton = page.getByRole('button', {
+              name: 'Yes, get this app back up!',
+              exact: true
+            });
+
+            if (await wakeButton.isVisible().catch(() => false)) {
+
+              console.log('Sleeping app detected.');
+              console.log('Clicking wake-up button...');
+
+              await wakeButton.click();
+
+              console.log('Wake-up button clicked.');
+              console.log('Waiting for Revenue AI Copilot to start...');
+
+              await page.waitForTimeout(90000);
+
+            } else {
+
+              console.log('Sleeping screen not detected.');
+              console.log('Revenue AI Copilot appears to already be awake.');
+            }
+
+            console.log('Checking final page...');
+
+            const bodyText = await page.locator('body').innerText();
+
+            const stillSleeping = bodyText.includes(
+              'Yes, get this app back up!'
+            );
+
+            if (stillSleeping) {
+              throw new Error(
+                'The wake-up button was clicked, but the app is still sleeping.'
+              );
+            }
+
+            console.log('SUCCESS: Revenue AI Copilot is awake.');
+            console.log('Final URL:', page.url());
+            console.log('Final title:', await page.title());
+
+            // Keep the real browser session alive a little longer.
+            await page.waitForTimeout(30000);
+
+            await browser.close();
+
+          })();
+          EOF
