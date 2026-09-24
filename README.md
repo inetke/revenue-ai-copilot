@@ -615,20 +615,15 @@ Beyond the core project requirements, the project includes:
 
 ---
 
-## Future Development
+## Future Improvements
 
-Potential future improvements include:
+Peer evaluation highlighted several opportunities for future iterations:
 
-- Query rewriting
-- More advanced re-ranking
-- Larger domain-specific knowledge bases
-- Automated evaluation pipelines
-- Improved monitoring and analytics
-- Document upload and ingestion from the interface
-- Conversation-aware retrieval
-- Agent-based Revenue Management workflows
-- Integration with live hotel operational data
-
+- **Improve source transparency** by displaying short excerpts from retrieved passages directly in the UI, alongside document and page references.
+- **Improve reproducibility** by providing a small openly licensed or synthetic sample knowledge base that allows the ingestion pipeline to be tested without the copyrighted source documents.
+- **Evaluate hybrid retrieval for production**, as hybrid configurations achieved stronger retrieval metrics during experimentation than the semantic-search baseline currently used by the deployed application.
+- **Extend RAG evaluation** by comparing multiple prompt and pipeline configurations.
+- **Explore query rewriting and reranking** to improve retrieval quality for more difficult or ambiguous questions.
 ---
 
 ## Long-Term Vision
