@@ -442,7 +442,7 @@ Evaluation pipeline including:
 Clone the repository:
 
 ```bash
-git clone <https://github.com/inetke/revenue-ai-copilot>
+git clone https://github.com/inetke/revenue-ai-copilot
 cd revenue-ai-copilot
 ```
 
