@@ -321,13 +321,10 @@ revenue-ai-copilot/
 │
 ├── app/
 │   ├── build_index.py
-│   ├── data_loader.py
 │   ├── ingest.py
 │   ├── index_download.py
 │   ├── monitoring.py
 │   ├── rag.py
-│   ├── rag_helper.py
-│   ├── search.py
 │   └── semantic_search.py
 │
 ├── pages/
