@@ -6,9 +6,9 @@
 
 Revenue AI Copilot is a Retrieval-Augmented Generation (RAG) application designed to help hotel Revenue Management professionals access specialized knowledge through natural-language questions.
 
-The system retrieves relevant information from a curated Revenue Management knowledge base and uses a Large Language Model to generate answers grounded in the retrieved documentation.
+The system retrieves relevant information from a curated Revenue Management knowledge base and uses a Large Language Model to generate grounded answers with source and page attribution.
 
-The project was developed as part of the **DataTalksClub LLM Zoomcamp** and demonstrates a complete production-oriented RAG workflow including document ingestion, semantic retrieval, retrieval evaluation, LLM evaluation, a conversational interface, user feedback, application monitoring, containerization, and cloud deployment.
+Built as part of the **DataTalksClub LLM Zoomcamp**, the project implements an end-to-end RAG workflow covering document ingestion, semantic retrieval, evaluation, user feedback, monitoring, containerization, and cloud deployment.
 
 ### Key Features
 
