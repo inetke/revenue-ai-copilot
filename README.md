@@ -406,6 +406,13 @@ Evaluation pipeline including:
 
 ## Installation
 
+### Requirements
+
+- Python 3.14 or later
+- [uv](https://docs.astral.sh/uv/)
+- OpenAI API key
+- Groq API key
+  
 Clone the repository:
 
 ```bash
@@ -519,7 +526,7 @@ GITHUB_ASSETS_TOKEN
 
 - `GITHUB_ASSETS_TOKEN` provides read-only access to the private release asset containing the pre-built semantic index.
 
-In production, secrets are stored securely in **Streamlit Secrets** and are not exposed in the public repository.
+In the deployed application, secrets are stored securely in Streamlit Secrets and are not exposed in the public repository.
 
 Secrets must never be committed to version control.
 
@@ -558,7 +565,7 @@ This project was developed as the final project for the DataTalksClub LLM Zoomca
 | Problem Description | Hotel Revenue Management use case and business problem clearly defined |
 | Retrieval Flow | Semantic retrieval over a five-document Revenue Management knowledge base |
 | Retrieval Evaluation | 50-question evaluation comparing keyword, semantic, Hybrid RRF, and weighted hybrid retrieval |
-| LLM Evaluation | 20-question end-to-end RAG evaluation using LLM-as-a-Judge across relevance, groundedness, completeness, and hallucination safety |
+| LLM Evaluation | 20-question end-to-end RAG evaluation using LLM-as-a-Judge across relevance, groundedness, completeness, and unsupported-generation risk |
 | Interface | Interactive Streamlit chat application |
 | Ingestion Pipeline | Python pipeline for PDF ingestion, chunking, embedding generation, and semantic index creation |
 | Monitoring | SQLite-based monitoring with usage, latency, source retrieval, and user-feedback metrics |
@@ -566,6 +573,14 @@ This project was developed as the final project for the DataTalksClub LLM Zoomca
 | Reproducibility | Installation, environment configuration, knowledge-base setup, and execution instructions documented in this README |
 | Hybrid Search | Multiple hybrid retrieval strategies evaluated against pure semantic retrieval |
 | Cloud Deployment | Application deployed publicly on Streamlit Community Cloud |
+
+### Evaluation Limitations
+
+The evaluation provides a structured way to compare retrieval and generation behavior within the current project, but it is not an independent external benchmark.
+
+The retrieval evaluation questions were generated from the source corpus and linked to known relevant content. In the end-to-end RAG evaluation, the same LLM family was used for answer generation and LLM-as-a-Judge evaluation, which may introduce evaluator bias.
+
+These results should therefore be interpreted as internal project evaluation signals rather than independent measures of real-world performance.
 
 ### Additional Engineering Features
 
@@ -588,9 +603,10 @@ Peer evaluation highlighted several opportunities for future iterations:
 
 - **Improve source transparency** by displaying short excerpts from retrieved passages directly in the UI, alongside document and page references.
 - **Improve reproducibility** by providing a small openly licensed or synthetic sample knowledge base that allows the ingestion pipeline to be tested without the copyrighted source documents.
-- **Evaluate hybrid retrieval for production**, as hybrid configurations achieved stronger retrieval metrics during experimentation than the semantic-search baseline currently used by the deployed application.
+- **Evaluate hybrid retrieval for deployment**, as hybrid configurations achieved stronger retrieval metrics during experimentation than the semantic-search baseline currently used by the deployed application.
 - **Extend RAG evaluation** by comparing multiple prompt and pipeline configurations.
 - **Explore query rewriting and reranking** to improve retrieval quality for more difficult or ambiguous questions.
+- **Strengthen evaluation independence** by using additional human-reviewed questions and a separate evaluator model for end-to-end RAG assessment.
 ---
 
 ## Long-Term Vision
