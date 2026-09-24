@@ -213,7 +213,9 @@ Persisting the document embeddings prevents the entire knowledge base from being
 
 A dedicated evaluation dataset containing **50 Revenue Management questions** was created from the knowledge base.
 
-Each evaluation question contains a known relevant document, allowing retrieval quality to be measured using:
+The evaluation questions were generated from the source corpus and linked to known relevant document chunks. This provides a reproducible way to compare retrieval strategies within the current knowledge base, although it should not be interpreted as an independent external benchmark.
+
+Retrieval quality was measured using:
 
 - **Hit Rate@5**
 - **MRR@5 (Mean Reciprocal Rank)**
@@ -236,41 +238,9 @@ Additional weighted hybrid experiments were performed:
 
 Hybrid RRF achieved the highest Hit Rate@5, while the 80/20 weighted hybrid configuration achieved the highest MRR@5.
 
-Despite these improvements, **Semantic Search (Top-5)** was selected for the production application. It provided strong retrieval performance while keeping the retrieval pipeline simpler and easier to maintain.
+Despite these improvements, **Semantic Search (Top-5)** was selected for the deployed application. It provided strong retrieval performance while keeping the retrieval pipeline simpler and easier to maintain.
 
-The hybrid experiments were retained as part of the evaluation process rather than adding additional production complexity for a relatively small improvement in retrieval metrics.
-
----
-
-## End-to-End RAG Evaluation
-
-The complete production RAG pipeline was evaluated using an **LLM-as-a-Judge** approach.
-
-A sample of 20 evaluation questions was used to assess four dimensions:
-
-- Relevance
-- Groundedness
-- Completeness
-- Hallucination safety
-
-### Results
-
-| Metric | Average Score |
-|---|---:|
-| Relevance | 4.50 / 5 |
-| Groundedness | 4.60 / 5 |
-| Completeness | 4.40 / 5 |
-| Hallucination Safety | 4.60 / 5 |
-
-Most evaluated answers achieved high scores, while manual inspection of the main outliers revealed several distinct failure modes.
-
-In one case, the requested information was not available in the retrieved context. The system correctly acknowledged that limitation rather than fabricating an answer, preserving maximum groundedness and hallucination safety despite lower relevance and completeness scores.
-
-Other inspected cases revealed occasional over-interpretation of partially relevant context and retrieval limitations for highly specific questions.
-
-These results show that end-to-end RAG quality depends on both retrieving sufficiently specific evidence and ensuring that the generation model does not extrapolate beyond the retrieved documentation.
-
-The final production configuration retains **Semantic Search with Top-5 retrieval** and a strict context-grounded generation prompt. Query rewriting and re-ranking are identified as potential future improvements.
+The hybrid experiments were retained as part of the evaluation process rather than adding additional deployment complexity for a relatively small improvement in retrieval metrics.
 
 ---
 
@@ -278,7 +248,7 @@ The final production configuration retains **Semantic Search with Top-5 retrieva
 
 Revenue AI Copilot is explicitly instructed to answer using only the retrieved context.
 
-The production prompt requires the model to:
+The generation prompt requires the model to:
 
 - Focus specifically on the user's question.
 - Prioritize the most directly relevant retrieved context.
@@ -292,7 +262,7 @@ The production prompt requires the model to:
 
 The generation model is `openai/gpt-oss-20b`, accessed through the Groq API.
 
-The model was evaluated as part of the complete RAG pipeline rather than assuming that model quality alone guarantees grounded answers. Prompt experiments were also evaluated to balance answer usefulness with groundedness and hallucination safety.
+The model was evaluated as part of the complete RAG pipeline rather than assuming that model quality alone guarantees grounded answers. Prompt experiments were also evaluated to balance answer usefulness, groundedness, and the risk of unsupported generation.
 
 The final prompt prioritizes traceability and factual support over generating longer answers when the retrieved documentation does not provide sufficient evidence.
 
@@ -307,7 +277,7 @@ Users can evaluate individual answers directly from the chat interface using:
 
 Feedback is associated with the corresponding interaction and persisted in a local SQLite database.
 
-This provides a foundation for identifying weak answers and improving the RAG system over time.
+This provides a foundation for identifying weak answers, analyzing failure cases, and improving the RAG system over time.
 
 ---
 
