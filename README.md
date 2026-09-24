@@ -48,7 +48,7 @@ Users can ask questions in natural language and receive answers grounded in the 
 
 Revenue Management was selected because it combines complex documentation, analytical decision-making, pricing strategy, forecasting, distribution, and real operational challenges.
 
-Professional experience in this domain also made it possible to develop the project around realistic Revenue Management questions and workflows rather than hypothetical examples.
+My professional background in Revenue Management made it possible to design the project around realistic business questions and workflows rather than hypothetical examples.
 
 The architecture itself is domain-independent and could later be adapted to other knowledge-intensive business areas.
 
@@ -135,7 +135,7 @@ Feedback & Monitoring
 
 The application separates ingestion, retrieval, generation, evaluation, and monitoring into independent components.
 
-### Production Deployment Architecture
+### Deployment Architecture
 
 The public application is deployed on **Streamlit Community Cloud**.
 
@@ -194,7 +194,7 @@ and rebuild the semantic index.
 
 ## Semantic Search
 
-The production retrieval system uses semantic search.
+The deployed retrieval system uses semantic search.
 
 Document embeddings are generated once during index construction and stored in a persistent semantic index.
 
